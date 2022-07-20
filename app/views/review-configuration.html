@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-xl">Review configuration</h1>
+
+      <h2 class="govuk-heading-m">Dataset details</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Title
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['title']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/dataset-details">
+              Change
+              <span class="govuk-visually-hidden"> title</span>
+            </a>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Description
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['description']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/dataset-details">
+              Change
+              <span class="govuk-visually-hidden"> description</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">File details</h2>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+                <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            CSV
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['csvDataFile']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/upload-files">
+              Change
+              <span class="govuk-visually-hidden"> CSV file</span>
+            </a>
+          </dd>
+        </div>
+      <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Configuration (optional)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['optConfigFile']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/upload-files">
+              Change
+              <span class="govuk-visually-hidden"> optional configuration file</span>
+            </a>
+          </dd>
+        </div>
+          <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            CSVW metadata (optional)
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{data['optCsvwDataFile']}}
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <a href="/upload-files">
+              Change
+              <span class="govuk-visually-hidden"> optional CSVW metadata file</span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+      <h2 class="govuk-heading-m">Next, describe your data</h2>
+
+      <p>Submitting this configuration will cause your file to be processed and give you the ability to provide further description of each column in your data.</p>
+
+      <form action="/confirmation" method="post" novalidate>
+
+        <input type="hidden" name="answers-checked" value="true">
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Submit and continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

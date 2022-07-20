@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Upload data files</h1>
+
+      <form class="form" action="/upload" method="post" enctype="multipart/form-data">
+
+      {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+      {{ govukFileUpload({
+        id: "csvDataFile",
+        name: "csvDataFile",
+        label: {
+          text: "CSV data file",
+          classes: "govuk-label--m"
+        },
+        hint: {
+          text: "In order to create a new dataset, you must upload a CSV (comma-delimited values) file in a tidy data format."
+        },
+        attributes: {
+          accept: ".csv"
+        },
+        value: data['csvDataFile']
+      }) }}
+
+      {{ govukFileUpload({
+        id: "optConfigFile",
+        name: "optConfigFile",
+        label: {
+          text: "Configuration file (optional)",
+          classes: "govuk-label--m"
+        },
+        hint: {
+          text: "The qube-config.json is a configuration file which describes the structure of the data in the CSV data file.
+          If you have this related file, please upload it below."
+        },
+    
+        value: data['optConfigFile']
+      }) }}
+
+      {{ govukFileUpload({
+        id: "optCsvwDataFile",
+        name: "optCsvwDataFile",
+        label: {
+          text: "CSVW data file (optional)",
+          classes: "govuk-label--m"
+        },
+        hint: {
+          text: "THIS MAY NOT BE NEEDED! A CSVW (CSV on the Web) file is a data file for publishing data on the web."
+        },
+        attributes: {
+          accept: ".csv, .json, .zip"
+        },
+        value: data['optCsvwDataFile']
+      }) }}
+        <button class="govuk-button" data-module="govuk-button">Upload</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

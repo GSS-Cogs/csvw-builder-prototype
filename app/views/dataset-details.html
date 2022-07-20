@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">Enter dataset details</h1>
+
+      <form class="form" action="/review" method="post">
+
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+        {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+        {% call govukFieldset() %}
+
+          {{ govukInput({
+            label: {
+              text: "Title",
+              classes: "govuk-label--m"
+            },
+            hint: {
+              text: "This is the title given to your dataset"
+            },
+            id: "title",
+            name: "title",
+            value: data['title']
+          }) }}
+
+          {{ govukInput({
+            label: {
+              text: "Description (optional)",
+              classes: "govuk-label--m"
+            },
+            hint: {
+              text: "This describes the data included in the dataset"
+            },
+            id: "description",
+            name: "description",
+            value: data['description']
+          }) }}
+
+
+        {% endcall %}
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
